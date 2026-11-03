@@ -1,0 +1,59 @@
+.app { display: flex; min-height: 100vh; }
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: var(--sidebar-w);
+  background: var(--navy);
+  position: fixed;
+  top: 0; bottom: 0; left: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+  z-index: 20;
+}
+.brand { color: #fff; font-size: 20px; font-weight: 800; padding: 8px 12px 24px; }
+.brand span { display: block; font-size: 11px; letter-spacing: 3px; color: #8FA6CC; font-weight: 600; }
+.sidebar a {
+  color: #C9D4EA;
+  text-decoration: none;
+  padding: 10px 12px;
+  border-radius: 8px;
+}
+.sidebar a:hover { background: var(--navy-light); color: #fff; }
+.sidebar a.active { background: var(--blue); color: #fff; }
+
+/* ---------- Main area ---------- */
+.main { margin-left: var(--sidebar-w); flex: 1; min-width: 0; }
+.header {
+  height: var(--header-h);
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.header-right { display: flex; align-items: center; gap: 16px; }
+.header-right select { width: 140px; }
+.page { padding: 24px; }
+.menu-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+
+/* ---------- Print ---------- */
+@media print {
+  .sidebar, .header, .no-print { display: none !important; }
+  .main { margin-left: 0; }
+}
+
+/* ---------- Tablet / phone ---------- */
+@media (max-width: 900px) {
+  .sidebar { transform: translateX(-100%); transition: transform .25s; }
+  .sidebar.open { transform: none; }
+  .main { margin-left: 0; }
+  .menu-btn { display: block; }
+  .page { padding: 16px; }
+}
